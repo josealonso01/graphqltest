@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <div id="list-personas"></div>
+  <body>
+    <script>
+      fetch('http://localhost:8080/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+            mutation ($id: Int!, $topic: String!) {
+          updateCourseTopic(id: $id, topic: $topic) {
+              ... courseData
+          }
+      }
+      fragment courseData on Course {
+          title
+          author
+          description
+          topic
+          url
+          id
+      }
+            `,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch(console.error);
+    </script>
+  </body>
+</html>

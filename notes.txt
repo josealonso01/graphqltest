@@ -1,0 +1,31 @@
+mutation{
+  updateCourseTopic(id:1, topic:"Javascript"){
+    id,
+    title,
+    topic
+  }
+}
+
+{
+  getCourseById(id:1) {
+    id,
+    title,
+    topic
+  }
+}
+
+{
+  getAllCourses {
+    id,
+    title,
+    topic
+  }
+}
+
+{
+  getArrayOfNumbers
+}
+
+{
+  getMessage
+}
